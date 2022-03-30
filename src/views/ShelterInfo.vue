@@ -124,6 +124,7 @@ export default {
     }
   }
   .update {
+    margin-top: 15px;
     text-align: right;
   }
 }

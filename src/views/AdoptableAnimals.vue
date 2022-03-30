@@ -223,6 +223,9 @@ export default {
   padding: 20px 30px;
   background: $primary-color;
   color: #FFF;
+  @media (max-width: 768px) {
+    padding: 15px 20px;
+  }
 }
 .cards {
   display: flex;

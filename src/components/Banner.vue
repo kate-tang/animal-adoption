@@ -52,6 +52,7 @@ export default {
 <style scoped lang="scss">
 .banner {
   position: relative;
+  height: 350px;
   background: url('../assets/banner-bg.jpg') no-repeat center / cover;
   background-origin: content-box;
   &::before {
@@ -66,14 +67,31 @@ export default {
   }
   .container {
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   .banner-text {
-    width: 400px;
-    margin: 0 auto;
-    padding: 100px 0 130px 0;
+    max-width: 400px;
+    margin: 0 auto 20px auto;
     color: #FFF;
     text-align: center;
     font-size: 30px;
+  }
+  @media (max-width: 1000px) {
+    height: 300px;
+    .banner-text {
+      font-size: 28px;
+    }
+    .breadcrumb-wrap {
+      font-size: 14px;
+    }
+  }
+  @media (max-width: 600px) {
+    height: 250px;
+    .banner-text {
+      font-size: 24px;
+    }
   }
 }
 .breadcrumb-wrap {
@@ -84,8 +102,10 @@ export default {
   display: flex;
   justify-content: center;
 }
-.breadcrumb-item:last-child {
-  .breadcrumb-text {
+.breadcrumb-item {
+  display: inline;
+  line-height: 1.2;
+  &:last-child .breadcrumb-text {
     color: #FFF;
     cursor: default;
     pointer-events: none;

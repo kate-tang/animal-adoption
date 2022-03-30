@@ -192,6 +192,9 @@ export default {
         font-size: 18px;
         line-height: 1.5;
         text-indent: -24px;
+        @media (max-width: 768px) {
+          font-size: 16px;
+        }
         .icon {
           margin-right: 5px;
           color: transparent;

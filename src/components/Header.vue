@@ -47,6 +47,14 @@ export default {
     let switchMenu = () => {
       isMobileMenuOpen.value = !isMobileMenuOpen.value;
     }
+    document.addEventListener('click', e => {
+      const mMenu = document.querySelector('.nav')
+      const toggle = document.querySelector('.m-menu-icon')
+      
+      if (!mMenu.contains(e.target) && e.target !== toggle || e.target.href){
+        isMobileMenuOpen.value = false
+      }
+    })
     
     return { header, nav, isMobileMenuOpen, switchMenu }
   }
@@ -66,16 +74,17 @@ export default {
     align-items: center;
     background: $primary-color;
     @media (max-width: 600px) {
-      padding: 15px 30px;
+      padding-top: 15px;
+      padding-bottom: 15px;
     }
   }
   .site-name {
     font-size: 30px;
-    @media (max-width: 600px) {
+    @media (max-width: 768px) {
       font-size: 26px;
     }
-    @media (max-width: 414px) {
-      font-size: 24px;
+    @media (max-width: 500px) {
+      font-size: 22px;
     }
   }
   .nav {

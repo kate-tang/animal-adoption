@@ -10,7 +10,7 @@
           </router-link>
         </h1>
       </div>
-      <div class="m-menu-icon" @click="switchMenu">
+      <div class="m-menu-icon" @click="isMobileMenuOpen = !isMobileMenuOpen">
         <div class="bar"></div>
       </div>
       <nav class="nav" ref="nav">
@@ -35,7 +35,6 @@ export default {
     let header = ref(null);
     let nav = ref(null);
     let isMobileMenuOpen = ref(false);
-    let isLoadFinish = ref(false);
 
     // 瀏覽器寬度>600時，關閉m-menu
     window.addEventListener('resize', (e) => {
@@ -43,20 +42,18 @@ export default {
         isMobileMenuOpen.value = false;
       }
     });
-    // 點漢堡，toggle顯示m-menu
-    let switchMenu = () => {
-      isMobileMenuOpen.value = !isMobileMenuOpen.value;
-    }
+    // 關閉m-menu
     document.addEventListener('click', e => {
       const mMenu = document.querySelector('.nav')
       const toggle = document.querySelector('.m-menu-icon')
+      console.log(!mMenu.contains(e.target), e.target !== toggle, e.target.href);
       
       if (!mMenu.contains(e.target) && e.target !== toggle || e.target.href){
         isMobileMenuOpen.value = false
       }
     })
     
-    return { header, nav, isMobileMenuOpen, switchMenu }
+    return { header, nav, isMobileMenuOpen }
   }
 }
 </script>
@@ -133,18 +130,35 @@ export default {
     width: 100%;
     height: 3px;
     background: #FFF;
+    pointer-events: none;
+    transition: all .3s;
     &::before, &::after {
       content: '';
       position: absolute;
       width: 100%;
       height: 3px;
       background: #FFF;
+      transform-origin: 0 0;
+      transition: all .3s;
     }
     &::before {
       top: -300%;
     }
     &::after {
       bottom: -300%;
+    }
+  }
+}
+.m-menu-active {
+  .m-menu-icon {
+    .bar {
+      background: transparent;
+      &::before {
+        transform: rotate(45deg) translateX(1px);
+      }
+      &::after {
+        transform: rotate(-45deg) translateX(-1px);
+      }
     }
   }
 }

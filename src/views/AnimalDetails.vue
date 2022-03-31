@@ -233,9 +233,11 @@ export default {
   .cards {
     display: flex;
     margin-top: 50px;
-    overflow-x: hidden;
-    // user-select: none;
-    // cursor: grabbing;
+    overflow-x: scroll;
+    cursor: grab;
+    &:active {
+      cursor: grabbing;
+    }
     & > * {
       flex: 0 0 22%;
       @media (max-width: 1000px) {

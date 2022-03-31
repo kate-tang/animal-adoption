@@ -119,6 +119,30 @@ export default {
     & + li {
       margin-left: 5px;
     }
+    @media (max-width: 768px) {
+      width: 36px;
+      height: 36px;
+      font-size: 16px;
+      line-height: 36px;
+      &.prev, &.next {
+        font-size: 14px;
+      }
+      & + li {
+        margin-left: 3px;
+      }
+    }
+    @media (max-width: 500px) {
+      width: 32px;
+      height: 32px;
+      font-size: 14px;
+      line-height: 32px;
+      &.prev, &.next {
+        font-size: 12px;
+      }
+      & + li {
+        margin-left: 0;
+      }
+    }
   }
 }
 </style>

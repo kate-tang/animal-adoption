@@ -4,11 +4,11 @@
       <img class="image" :src="animal.image" alt="待領養動物照片" draggable="false">
       <router-link :to="{ name: 'AnimalDetails', params: {id: animal.id} }" class="btn" target="_blank">詳細</router-link>
     </div>
-    <div class="card-body" ref="cardBody" v-if="!path.match(/adoptable-animals\/./)">
-      <div class="card-less-info" @click="showMore">
+    <div class="card-body" v-if="!path.match(/adoptable-animals\/./)" :class="{ 'show-more': isShowMore }">
+      <div class="card-less-info" @click="isShowMore = !isShowMore">
         <div class="location">{{ animal.shelter_county }}</div>
         <div class="controls">
-          <font-awesome-icon icon="chevron-down" class="arrow" />
+          <font-awesome-icon :icon="isShowMore ? 'chevron-up' : 'chevron-down'" class="arrow" />
         </div>
       </div>
       <div class="card-more-info">
@@ -52,14 +52,9 @@ export default {
     const animal = ref(handleApiValue(props.animalData));
 
     // 手機版面點下三角顯示更多資訊
-    const cardBody = ref(null);
-    function showMore(){
-      cardBody.value.classList.toggle('show-more');
-    }
+    let isShowMore = ref(false)
 
-    return {
-      animal, cardBody, showMore
-    }
+    return { animal, isShowMore }
   }
 }
 </script>
